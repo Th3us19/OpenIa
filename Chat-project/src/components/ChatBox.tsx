@@ -1,3 +1,5 @@
+
+import { useRef, useEffect } from "react";
 import { MessageBubble } from "./MessageBubble";
 import { ChatInput } from "./ChatInput";
 
@@ -16,6 +18,14 @@ interface ChatBoxProps {
 }
 
 export function ChatBox({ messages, message, onChange, onSubmit }: ChatBoxProps) {
+  const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (messagesEndRef.current) {
+      messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messages]);
+
   return (
     <div className="bg-white shadow-lg p-2 sm:p-4 md:p-5 w-full max-w-full sm:max-w-2xl md:max-w-3xl h-[60vh] rounded-xl mt-4 overflow-y-auto scrollbar-hide flex flex-col justify-between">
       <div className="flex-1 overflow-y-auto">
@@ -23,6 +33,7 @@ export function ChatBox({ messages, message, onChange, onSubmit }: ChatBoxProps)
           {messages.map((msg, index) => (
             <MessageBubble key={index} text={msg.text} isUser={msg.sender === 'user'} />
           ))}
+          <div ref={messagesEndRef} />
         </div>
       </div>
       <ChatInput value={message} onChange={onChange} onSubmit={onSubmit} />
