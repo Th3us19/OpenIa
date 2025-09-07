@@ -34,7 +34,7 @@ def chat():
     mensagens.append({"role": "user", "content": user_message})
     
     resposta = client.chat.completions.create(
-        model="openai/gpt-oss-20b:free",
+        model="meta-llama/llama-3.1-8b-instruct:free",
         messages=mensagens,
         max_tokens=1000,
         temperature=0,

@@ -6,10 +6,7 @@ from flask_cors import CORS
 from datetime import datetime
 
 load_dotenv()
-client = openai.Client(
-    api_key=os.getenv("OPENAI_API_KEY"),
-    base_url="https://openrouter.ai/api/v1"
-)
+client = openai.Client(api_key=os.getenv("OPENAI_API_KEY"))
 
 app = Flask(__name__)
 CORS(app, resources={r"/*": {"origins": "*", "methods": ["GET", "POST", "OPTIONS"], "allow_headers": ["Content-Type", "Authorization"]}})
@@ -34,7 +31,7 @@ def chat():
     mensagens.append({"role": "user", "content": user_message})
     
     resposta = client.chat.completions.create(
-        model="openai/gpt-oss-20b:free",
+        model="gpt-3.5-turbo-0125",
         messages=mensagens,
         max_tokens=1000,
         temperature=0,
