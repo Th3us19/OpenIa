@@ -1,0 +1,10 @@
+ipykernel
+openai
+pandas
+matplotlib
+seaborn
+python-dotenv
+yfinance
+colorama
+flask
+flask-cors

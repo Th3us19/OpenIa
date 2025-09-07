@@ -1,9 +1,0 @@
-ipykernel
-openai
-pandas
-matplotlib
-seaborn
-python-dotenv
-yfinance
-colorama
-openai
